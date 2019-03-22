@@ -7,13 +7,14 @@ import {
 } from "src/shared-styled/Layout";
 import React, { useEffect } from "react";
 import { jsPlumb, EndpointOptions, ElementGroupRef } from "jsplumb";
+import { position } from "src/shared/constant";
 
 export const DragToConnection = () => {
-  const ElMap = useRefWithDefaultEl();
+  const elMap = useRefWithDefaultEl();
 
   useEffect(() => {
     let instance = jsPlumb.getInstance({
-      Container: ElMap.diagramContainerRef.current
+      Container: elMap.diagramContainerRef.current
     });
 
     instance.ready(() => {
@@ -26,29 +27,29 @@ export const DragToConnection = () => {
         instance.addEndpoint(el, params, common);
       };
       // 增加点
-      addEndpoint(ElMap.itemLeftRef.current!, { anchor: "Bottom" });
+      addEndpoint(elMap.itemLeftRef.current!, { anchor: position.Bottom });
 
-      addEndpoint(ElMap.itemLeftRef.current!, {
-        anchor: "Right"
+      addEndpoint(elMap.itemLeftRef.current!, {
+        anchor: position.Right
       });
 
-      addEndpoint(ElMap.itemRightRef.current!, {
-        anchor: "Left"
+      addEndpoint(elMap.itemRightRef.current!, {
+        anchor: position.Left
       });
-      addEndpoint(ElMap.itemBottomRef.current!, { anchor: "Top" });
+      addEndpoint(elMap.itemBottomRef.current!, { anchor: position.Top });
     });
     return () => {
-      instance.removeAllEndpoints(ElMap.diagramContainerRef.current!);
+      instance.removeAllEndpoints(elMap.diagramContainerRef.current!);
     };
   }, []);
 
   return (
     <>
       <h3>给连线设置不同的颜色，设置不同的粗细之类的</h3>
-      <DiagramContainer ref={ElMap.diagramContainerRef}>
-        <Item ref={ElMap.itemLeftRef} draggable />
-        <ItemRight ref={ElMap.itemRightRef} draggable />
-        <ItemBottom ref={ElMap.itemBottomRef} draggable />
+      <DiagramContainer ref={elMap.diagramContainerRef}>
+        <Item ref={elMap.itemLeftRef} draggable />
+        <ItemRight ref={elMap.itemRightRef} draggable />
+        <ItemBottom ref={elMap.itemBottomRef} draggable />
       </DiagramContainer>
     </>
   );
