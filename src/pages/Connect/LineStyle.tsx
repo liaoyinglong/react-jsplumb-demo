@@ -18,22 +18,15 @@ export const LineStyle = () => {
     },
     afterConnect: instance => {
       instance.draggable([ElMap.itemLeftEl.current, ElMap.itemRightEl.current]);
+      instance.addEndpoint(ElMap.itemLeftEl.current!, {
+        anchors: ["Right"]
+      });
     }
   });
 
   return (
     <>
-      <ul>
-        <li>
-          <h3>给连线设置不同的颜色，设置不同的粗细之类的</h3>
-          <pre>
-            {`
-              paintStyle: { stroke: 'lightgray', strokeWidth: 3 },
-              endpointStyle: { fill: 'lightgray', outlineStroke: 'darkgray', outlineWidth: 2 }
-             `}
-          </pre>
-        </li>
-      </ul>
+      <h3>给连线设置不同的颜色，设置不同的粗细之类的</h3>
       <DiagramContainer ref={ElMap.diagramContainerEl}>
         <Item ref={ElMap.itemLeftEl} draggable />
         <ItemRight ref={ElMap.itemRightEl} draggable />
