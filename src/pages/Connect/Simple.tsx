@@ -8,11 +8,9 @@ export const Simple = () => {
   useJsPlumbInstance({ ElMap });
 
   return (
-    <>
-      <DiagramContainer ref={ElMap.diagramContainerEl}>
-        <Item ref={ElMap.itemLeftEl} />
-        <ItemRight ref={ElMap.itemRightEl} />
-      </DiagramContainer>
-    </>
+    <DiagramContainer ref={ElMap.diagramContainerEl}>
+      <Item ref={ElMap.itemLeftEl} />
+      <ItemRight ref={ElMap.itemRightEl} />
+    </DiagramContainer>
   );
 };
