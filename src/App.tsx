@@ -2,6 +2,7 @@ import React from "react";
 import { HashRouter, Link, Redirect, Route, Switch } from "react-router-dom";
 import { Simple } from "src/pages/Connect/Simple";
 import { Draggable } from "src/pages/Connect/Draggable";
+import { LineStyle } from "src/pages/Connect/LineStyle";
 
 const NavArr = [
   {
@@ -13,9 +14,13 @@ const NavArr = [
     to: "/connect/draggable",
     name: "可拖拽的版本",
     component: Draggable
+  },
+  {
+    to: "/connect/LineStyle",
+    name: "连接线样式自定义",
+    component: LineStyle
   }
 ];
-
 export const App = () => {
   return (
     <HashRouter>
@@ -32,7 +37,12 @@ export const App = () => {
       </div>
       <Switch>
         {NavArr.map(item => (
-          <Route exact path={item.to} component={item.component} />
+          <Route
+            key={item.to}
+            exact
+            path={item.to}
+            component={item.component}
+          />
         ))}
         <Redirect to={NavArr[0].to} path={"*"} />
       </Switch>
