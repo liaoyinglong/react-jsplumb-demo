@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from "react";
-import { jsPlumb } from "jsplumb";
+import React, { useEffect, useRef, useState } from "react";
+import { jsPlumb, jsPlumbInstance } from "jsplumb";
 
 import styled from "styled-components";
 
@@ -23,33 +23,78 @@ const ItemRight = styled(Item)`
   margin-left: 50px;
 `;
 
-const SimpleConnect = () => {
+const useRefWithDefaultEl = () => {
   const itemLeftEl = useRef<HTMLDivElement>(null);
   const itemRightEl = useRef<HTMLDivElement>(null);
   const diagramContainerEl = useRef<HTMLDivElement>(null);
 
+  return {
+    itemLeftEl,
+    itemRightEl,
+    diagramContainerEl
+  };
+};
+
+const useJsPlumbInstance = (
+  ElMap: ReturnType<typeof useRefWithDefaultEl>,
+  callback?: (instance: jsPlumbInstance) => void
+) => {
+  const [jsPlumbInstance, setJsPlumbInstance] = useState<jsPlumbInstance>();
   useEffect(() => {
-    let jsPlumbInstance = jsPlumb.getInstance({
-      Container: diagramContainerEl.current
+    let instance = jsPlumb.getInstance({
+      Container: ElMap.diagramContainerEl.current
     });
-    jsPlumbInstance.ready(function() {
-      jsPlumbInstance.connect({
-        source: itemLeftEl.current!,
-        target: itemRightEl.current!,
+    setJsPlumbInstance(instance);
+    instance.ready(function() {
+      instance.connect({
+        source: ElMap.itemLeftEl.current!,
+        target: ElMap.itemRightEl.current!,
         endpoint: "Dot"
       });
+      callback && callback(instance);
     });
     return () => {
-      jsPlumbInstance.removeAllEndpoints(diagramContainerEl.current!);
+      instance.removeAllEndpoints(ElMap.diagramContainerEl.current!);
     };
   }, []);
+
+  return jsPlumbInstance;
+};
+
+const SimpleConnect = () => {
+  const ElMap = useRefWithDefaultEl();
+
+  useJsPlumbInstance(ElMap);
 
   return (
     <>
       <h2>简单连线版本</h2>
-      <DiagramContainer ref={diagramContainerEl}>
-        <Item ref={itemLeftEl} />
-        <ItemRight ref={itemRightEl} style={{ marginLeft: "50px" }} />
+      <DiagramContainer ref={ElMap.diagramContainerEl}>
+        <Item ref={ElMap.itemLeftEl} />
+        <ItemRight ref={ElMap.itemRightEl} />
+      </DiagramContainer>
+    </>
+  );
+};
+
+const DraggableConnect = () => {
+  const ElMap = useRefWithDefaultEl();
+
+  useJsPlumbInstance(ElMap, instance => {
+    instance.draggable(ElMap.itemLeftEl.current!);
+    instance.draggable(ElMap.itemRightEl.current!);
+  });
+
+  return (
+    <>
+      <h2>可拖拽的版本</h2>
+      <p>想要拖拽的元素必须设置成 `absolute`</p>
+      <DiagramContainer ref={ElMap.diagramContainerEl}>
+        <Item ref={ElMap.itemLeftEl} style={{ position: "absolute" }} />
+        <ItemRight
+          ref={ElMap.itemRightEl}
+          style={{ position: "absolute", left: "150px" }}
+        />
       </DiagramContainer>
     </>
   );
@@ -60,6 +105,7 @@ export const Connect = () => {
     <div>
       <SimpleConnect />
       <hr />
+      <DraggableConnect />
     </div>
   );
 };
