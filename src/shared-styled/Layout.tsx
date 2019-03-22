@@ -9,13 +9,19 @@ export const DiagramContainer = styled.div`
   margin-top: 10px;
 `;
 
-export const Item = styled.div`
+interface IItemProps {
+  draggable?: boolean;
+}
+
+export const Item = styled.div<IItemProps>`
   height: 80px;
   width: 80px;
   border: 1px solid blue;
   float: left;
+  ${(props: IItemProps) => (props.draggable ? " position:absolute" : "")};
 `;
 
 export const ItemRight = styled(Item)`
   margin-left: 50px;
+  ${(props: IItemProps) => (props.draggable ? "left: 150px" : "")};
 `;

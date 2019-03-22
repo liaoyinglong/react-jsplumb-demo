@@ -16,7 +16,9 @@ export const LineStyle = () => {
       },
       overlays: [["Arrow", { width: 12, length: 12, location: 0.5 }]]
     },
-    afterConnect: instance => {}
+    afterConnect: instance => {
+      instance.draggable([ElMap.itemLeftEl.current, ElMap.itemRightEl.current]);
+    }
   });
 
   return (
@@ -33,8 +35,8 @@ export const LineStyle = () => {
         </li>
       </ul>
       <DiagramContainer ref={ElMap.diagramContainerEl}>
-        <Item ref={ElMap.itemLeftEl} />
-        <ItemRight ref={ElMap.itemRightEl} />
+        <Item ref={ElMap.itemLeftEl} draggable />
+        <ItemRight ref={ElMap.itemRightEl} draggable />
       </DiagramContainer>
     </>
   );

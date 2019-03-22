@@ -17,11 +17,8 @@ export const Draggable = () => {
     <>
       <p>想要拖拽的元素必须设置成 `absolute`</p>
       <DiagramContainer ref={ElMap.diagramContainerEl}>
-        <Item ref={ElMap.itemLeftEl} style={{ position: "absolute" }} />
-        <ItemRight
-          ref={ElMap.itemRightEl}
-          style={{ position: "absolute", left: "150px" }}
-        />
+        <Item ref={ElMap.itemLeftEl} draggable />
+        <ItemRight ref={ElMap.itemRightEl} draggable />
       </DiagramContainer>
     </>
   );
