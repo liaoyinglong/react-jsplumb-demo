@@ -14,20 +14,20 @@ export const useJsPlumbInstance = ({
   const [jsPlumbInstance, setJsPlumbInstance] = useState<jsPlumbInstance>();
   useEffect(() => {
     let instance = jsPlumb.getInstance({
-      Container: ElMap.diagramContainerEl.current
+      Container: ElMap.diagramContainerRef.current
     });
     setJsPlumbInstance(instance);
     instance.ready(function() {
       // 第二个参数是默认配置项 会跟 第一个参数merge
       instance.connect(connectOptions, {
-        source: ElMap.itemLeftEl.current!,
-        target: ElMap.itemRightEl.current!,
+        source: ElMap.itemLeftRef.current!,
+        target: ElMap.itemRightRef.current!,
         endpoint: "Dot"
       });
       afterConnect && afterConnect(instance);
     });
     return () => {
-      instance.removeAllEndpoints(ElMap.diagramContainerEl.current!);
+      instance.removeAllEndpoints(ElMap.diagramContainerRef.current!);
     };
   }, []);
 

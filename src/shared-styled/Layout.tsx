@@ -25,3 +25,8 @@ export const ItemRight = styled(Item)`
   margin-left: 50px;
   ${(props: IItemProps) => (props.draggable ? "left: 150px" : "")};
 `;
+
+export const ItemBottom = styled(Item)`
+  margin-top: 80px;
+  ${(props: IItemProps) => (props.draggable ? "bottom: 150px" : "")};
+`;

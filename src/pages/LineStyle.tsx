@@ -17,8 +17,8 @@ export const LineStyle = () => {
       overlays: [["Arrow", { width: 12, length: 12, location: 0.5 }]]
     },
     afterConnect: instance => {
-      instance.draggable([ElMap.itemLeftEl.current, ElMap.itemRightEl.current]);
-      instance.addEndpoint(ElMap.itemLeftEl.current!, {
+      instance.draggable([ElMap.itemLeftRef.current, ElMap.itemRightRef.current]);
+      instance.addEndpoint(ElMap.itemLeftRef.current!, {
         anchors: ["Right"]
       });
     }
@@ -27,9 +27,9 @@ export const LineStyle = () => {
   return (
     <>
       <h3>给连线设置不同的颜色，设置不同的粗细之类的</h3>
-      <DiagramContainer ref={ElMap.diagramContainerEl}>
-        <Item ref={ElMap.itemLeftEl} draggable />
-        <ItemRight ref={ElMap.itemRightEl} draggable />
+      <DiagramContainer ref={ElMap.diagramContainerRef}>
+        <Item ref={ElMap.itemLeftRef} draggable />
+        <ItemRight ref={ElMap.itemRightRef} draggable />
       </DiagramContainer>
     </>
   );

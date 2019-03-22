@@ -8,17 +8,17 @@ export const Draggable = () => {
   useJsPlumbInstance({
     ElMap,
     afterConnect: instance => {
-      instance.draggable(ElMap.itemLeftEl.current!);
-      instance.draggable(ElMap.itemRightEl.current!);
+      instance.draggable(ElMap.itemLeftRef.current!);
+      instance.draggable(ElMap.itemRightRef.current!);
     }
   });
 
   return (
     <>
       <p>想要拖拽的元素必须设置成 `absolute`</p>
-      <DiagramContainer ref={ElMap.diagramContainerEl}>
-        <Item ref={ElMap.itemLeftEl} draggable />
-        <ItemRight ref={ElMap.itemRightEl} draggable />
+      <DiagramContainer ref={ElMap.diagramContainerRef}>
+        <Item ref={ElMap.itemLeftRef} draggable />
+        <ItemRight ref={ElMap.itemRightRef} draggable />
       </DiagramContainer>
     </>
   );
