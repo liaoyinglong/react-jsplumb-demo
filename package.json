@@ -13,6 +13,7 @@
     "precss": "^4.0.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-hanger": "^1.1.4",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
     "rxjs": "^6.4.0",

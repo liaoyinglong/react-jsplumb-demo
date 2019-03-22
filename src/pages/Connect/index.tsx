@@ -1,28 +1,38 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { jsPlumb } from "jsplumb";
 import "./index.css";
 
 export const Connect = () => {
+  const itemLeftEl = useRef<HTMLDivElement>(null);
+  const itemRightEl = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    const firstInstance = jsPlumb.getInstance({
+    let firstInstance = jsPlumb.getInstance({
       Container: "diagramContainer"
     });
     firstInstance.ready(function() {
       firstInstance.connect({
-        source: "item_left",
-        target: "item_right",
+        source: itemLeftEl.current!,
+        target: itemRightEl.current!,
         endpoint: "Dot"
       });
     });
+
     return () => {
       firstInstance.removeAllEndpoints("diagramContainer");
     };
   }, []);
+
   return (
     <div>
       <div id="diagramContainer">
-        <div id="item_left" className="item" />
-        <div id="item_right" className="item" style={{ marginLeft: "50px" }} />
+        <div ref={itemLeftEl} id="item_left" className="item" />
+        <div
+          ref={itemRightEl}
+          id="item_right"
+          className="item"
+          style={{ marginLeft: "50px" }}
+        />
       </div>
     </div>
   );
