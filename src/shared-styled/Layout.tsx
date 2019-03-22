@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 export const DiagramContainer = styled.div`
   padding: 20px;
-  width: 80%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  width: 80vw;
+  height: 50vh;
+  position: relative;
+  border: 1px solid #000;
 `;
 
 interface ItemProps {
