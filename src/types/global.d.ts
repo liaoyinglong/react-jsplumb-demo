@@ -21,7 +21,8 @@ declare global {
      * 端点的配置
      */
     interface EndpointOptions {
-      anchors: string[];
+      anchors?: string[];
+      connector?: string[];
       maxConnections?: number; //= 1?
       parameters?: object;
       id?: string;

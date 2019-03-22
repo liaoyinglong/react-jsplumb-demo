@@ -3,15 +3,16 @@ import { HashRouter, Link, Redirect, Route, Switch } from "react-router-dom";
 import { Simple } from "src/pages/Simple";
 import { Draggable } from "src/pages/Draggable";
 import { LineStyle } from "src/pages/LineStyle";
+import { DragToConnection } from "src/pages/DragToConnection";
 
 const NavArr = [
   {
-    to: "/connect/simple",
+    to: "/connect/Simple",
     name: "简单连线版本",
     component: Simple
   },
   {
-    to: "/connect/draggable",
+    to: "/connect/Draggable",
     name: "可拖拽的版本",
     component: Draggable
   },
@@ -19,6 +20,11 @@ const NavArr = [
     to: "/connect/LineStyle",
     name: "连接线样式自定义",
     component: LineStyle
+  },
+  {
+    to: "/connect/DragToConnection",
+    name: "拖动创建连接",
+    component: DragToConnection
   }
 ];
 export const App = () => {
