@@ -18,11 +18,11 @@ export const useJsPlumbInstance = ({
     });
     setJsPlumbInstance(instance);
     instance.ready(function() {
-      instance.connect({
+      // 第二个参数是默认配置项 会跟 第一个参数merge
+      instance.connect(connectOptions, {
         source: ElMap.itemLeftEl.current!,
         target: ElMap.itemRightEl.current!,
-        endpoint: "Dot",
-        ...connectOptions
+        endpoint: "Dot"
       });
       afterConnect && afterConnect(instance);
     });
