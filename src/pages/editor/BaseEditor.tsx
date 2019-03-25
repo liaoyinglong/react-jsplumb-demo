@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import { LeftContainer } from "src/pages/editor/components/LeftContainer";
 import { RightContainer } from "src/pages/editor/components/RightContainer";
+import { MiddleContainer } from "src/pages/editor/components/MiddleContainer";
 
 const BaseEditorContainer = styled.div.attrs({
   className: "BaseEditorContainer"
@@ -11,15 +12,11 @@ const BaseEditorContainer = styled.div.attrs({
   border-top: 1px solid #e6e9ed;
 `;
 
-const MiddleContainer = styled.div.attrs({ className: "MiddleContainer" })`
-  flex: 1;
-`;
-
 export const BaseEditor = () => {
   return (
     <BaseEditorContainer>
       <LeftContainer />
-      <MiddleContainer>MiddleContainer</MiddleContainer>
+      <MiddleContainer />
       <RightContainer>RightContainer</RightContainer>
     </BaseEditorContainer>
   );

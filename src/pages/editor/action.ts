@@ -19,5 +19,3 @@ export type IEditorActions =
   | ActionType<typeof setCurrentOperationType>
   | ActionType<typeof delaySetCurrentOperationType>
   | ActionType<typeof resetToSelect>;
-
-
