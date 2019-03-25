@@ -5,7 +5,7 @@ import {
 import { operationType } from "src/pages/editor/components/LeftContainer";
 import { getType } from "typesafe-actions";
 let initialState = {
-  CurrentOperationType: operationType.select
+  currentOperationType: operationType.select
 };
 
 export type IEditorStoreState = Readonly<typeof initialState>;
@@ -16,7 +16,7 @@ export const editorReducer = (
 ): IEditorStoreState => {
   switch (action.type) {
     case getType(setCurrentOperationType):
-      return { ...state, CurrentOperationType: action.payload };
+      return { ...state, currentOperationType: action.payload };
 
     default:
       return state;

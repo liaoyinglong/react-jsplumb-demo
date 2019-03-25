@@ -45,7 +45,7 @@ const operationArr = [
 
 const mapStateToProps = (state: RootState) => {
   return {
-    CurrentOperationType: state.editorStore.CurrentOperationType
+    currentOperationType: state.editorStore.currentOperationType
   };
 };
 
@@ -66,7 +66,7 @@ const _LeftContainer: React.FunctionComponent<ILeftContainerProps> = props => {
       <div>
         当前操作项:
         <br />
-        {props.CurrentOperationType}
+        {props.currentOperationType}
       </div>
 
       {operationArr.map(item => (

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import * as React from "react";
+import { useRef, useState } from "react";
 import { RootState } from "src/store/reducers";
 import { bindActionCreators, Dispatch } from "redux";
 import { resetToSelect } from "src/pages/editor/action";
@@ -10,7 +11,9 @@ const Wrapper = styled.div.attrs({ className: "MiddleContainer" })`
 `;
 
 const mapStateToProps = (state: RootState) => {
-  return {};
+  return {
+    currentOperationType: state.editorStore.currentOperationType
+  };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
@@ -27,8 +30,19 @@ type IMiddleContainerProps = ReturnType<typeof mapStateToProps> &
 export const _MiddleContainer: React.FunctionComponent<
   IMiddleContainerProps
 > = props => {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [arr, setArr] = useState<string[]>(["1"]);
+
+  const addChildren = (e: React.MouseEvent) => {
+    console.log(e.clientX, e.clientY);
+  };
+
   return (
-    <Wrapper onClick={() => props.resetToSelect()}>MiddleContainer</Wrapper>
+    <Wrapper onClick={addChildren}>
+      {arr.map(item => (
+        <span key={item}>{item}</span>
+      ))}
+    </Wrapper>
   );
 };
 
