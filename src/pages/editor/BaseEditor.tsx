@@ -18,7 +18,7 @@ const MiddleContainer = styled.div.attrs({ className: "MiddleContainer" })`
 export const BaseEditor = () => {
   return (
     <BaseEditorContainer>
-      <LeftContainer>LeftContainer</LeftContainer>
+      <LeftContainer />
       <MiddleContainer>MiddleContainer</MiddleContainer>
       <RightContainer>RightContainer</RightContainer>
     </BaseEditorContainer>
