@@ -7,7 +7,7 @@ import {
 } from "src/shared-styled/Layout";
 import React, { useEffect } from "react";
 import { jsPlumb, EndpointOptions, ElementGroupRef } from "jsplumb";
-import { position } from "src/shared/constant";
+import { connector, position } from "src/shared/constant";
 
 export const DragToConnection = () => {
   const elMap = useRefWithDefaultEl();
@@ -22,7 +22,7 @@ export const DragToConnection = () => {
         let common = {
           isSource: true,
           isTarget: true,
-          connector: "Straight"
+          connector: connector.Flowchart
         };
         instance.addEndpoint(el, params, common);
       };
