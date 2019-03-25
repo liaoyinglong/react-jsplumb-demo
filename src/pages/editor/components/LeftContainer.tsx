@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import { BothSideStyled } from "src/pages/editor/components/shared";
 import * as React from "react";
-import { useState } from "react";
 import { Button } from "antd";
 import { ButtonProps } from "antd/lib/button";
+import { RootState } from "src/store/reducers";
+import { bindActionCreators, Dispatch } from "redux";
+import { setCurrentOperationType } from "src/pages/editor/action";
+import { connect } from "react-redux";
 
 const Wrapper = styled(BothSideStyled).attrs({
   className: "LeftContainer"
@@ -40,21 +43,45 @@ const operationArr = [
   operationType.end
 ];
 
-export const LeftContainer = () => {
-  const [type, setType] = useState(operationType.select);
+const mapStateToProps = (state: RootState) => {
+  return {
+    CurrentOperationType: state.editorStore.CurrentOperationType
+  };
+};
+
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  return bindActionCreators(
+    {
+      setCurrentOperationType
+    },
+    dispatch
+  );
+};
+type ILeftContainerProps = ReturnType<typeof mapStateToProps> &
+  ReturnType<typeof mapDispatchToProps>;
+
+const _LeftContainer: React.FunctionComponent<ILeftContainerProps> = props => {
   return (
     <Wrapper>
       <div>
         当前操作项:
         <br />
-        {type}
+        {props.CurrentOperationType}
       </div>
 
       {operationArr.map(item => (
-        <OperationBtn onClick={() => setType(item)} key={item}>
+        <OperationBtn
+          onClick={() => props.setCurrentOperationType(item)}
+          key={item}
+        >
           {item}
         </OperationBtn>
       ))}
     </Wrapper>
   );
 };
+
+export const LeftContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(_LeftContainer);

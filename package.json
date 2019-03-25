@@ -43,6 +43,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@types/react-redux": "^7.0.5",
     "babel-plugin-import": "^1.11.0",
     "customize-cra": "^0.2.12",
     "react-app-rewired": "^2.1.1"
