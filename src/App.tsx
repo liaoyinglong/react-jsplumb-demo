@@ -4,6 +4,7 @@ import { Simple } from "src/pages/Simple";
 import { Draggable } from "src/pages/Draggable";
 import { LineStyle } from "src/pages/LineStyle";
 import { DragToConnection } from "src/pages/DragToConnection";
+import { BaseEditor } from "src/pages/BaseEditor";
 
 const NavArr = [
   {
@@ -25,6 +26,11 @@ const NavArr = [
     to: "/connect/DragToConnection",
     name: "拖动创建连接",
     component: DragToConnection
+  },
+  {
+    to: "/editor/BaseEditor",
+    name: "基础编辑器",
+    component: BaseEditor
   }
 ];
 export const App = () => {
