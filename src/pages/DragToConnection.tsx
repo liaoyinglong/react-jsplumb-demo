@@ -37,7 +37,13 @@ export const DragToConnection = () => {
         anchor: position.Left
       });
       addEndpoint(elMap.itemBottomRef.current!, { anchor: position.Top });
+
+      // 设置拖动
+      instance.draggable(elMap.itemBottomRef.current!);
+      instance.draggable(elMap.itemLeftRef.current!);
+      instance.draggable(elMap.itemRightRef.current!);
     });
+
     return () => {
       instance.removeAllEndpoints(elMap.diagramContainerRef.current!);
     };
