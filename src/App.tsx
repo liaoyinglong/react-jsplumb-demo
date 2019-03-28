@@ -1,9 +1,9 @@
 import React from "react";
 import { HashRouter, Link, Redirect, Route, Switch } from "react-router-dom";
-import { Simple } from "src/pages/connect/Simple";
 import { Draggable } from "src/pages/connect/Draggable";
-import { LineStyle } from "src/pages/connect/LineStyle";
 import { DragToConnection } from "src/pages/connect/DragToConnection";
+import { LineStyle } from "src/pages/connect/LineStyle";
+import { Simple } from "src/pages/connect/Simple";
 import { BaseEditor } from "src/pages/editor/BaseEditor";
 
 const NavArr = [
