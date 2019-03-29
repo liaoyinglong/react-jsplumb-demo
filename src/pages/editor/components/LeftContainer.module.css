@@ -1,0 +1,15 @@
+$hongSe: red;
+
+.leftContainer {
+  width: 200px;
+  border-right: 1px solid #e6e9ed;
+  color: $hongSe;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  background-color: #f7f9fb;
+}
+
+.operationBtn {
+  margin: 0 0 10px;
+}

@@ -1,38 +1,23 @@
-import styled from "styled-components";
-import { BothSideStyled } from "src/pages/editor/components/shared";
-import * as React from "react";
-import { Button } from "antd";
-import { ButtonProps } from "antd/lib/button";
-import { RootState } from "src/store/reducers";
-import { bindActionCreators, Dispatch } from "redux";
-import { setCurrentOperationType } from "src/pages/editor/action";
-import { connect } from "react-redux";
+import { Button } from 'antd';
+import * as React from 'react';
+import { connect } from 'react-redux';
+import { Dispatch, bindActionCreators } from 'redux';
+import { setCurrentOperationType } from 'src/pages/editor/action';
+import { RootState } from 'src/store/reducers';
 
-const Wrapper = styled(BothSideStyled).attrs({
-  className: "LeftContainer"
-})`
-  width: 200px;
-  border-right: 1px solid #e6e9ed;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-`;
-
-const OperationBtn = styled(Button)<ButtonProps>`
-  margin: 0 0 10px;
-`;
+const styles = require('./LeftContainer.module.css');
 
 /**
  * 操作按钮枚举
  */
 export enum operationType {
-  select = "选择",
-  start = "开始",
-  task = "任务",
-  cond = "条件",
-  subflow = "子流",
-  link = "连线",
-  end = "结束"
+  select = '选择',
+  start = '开始',
+  task = '任务',
+  cond = '条件',
+  subflow = '子流',
+  link = '连线',
+  end = '结束'
 }
 
 const operationArr = [
@@ -50,19 +35,14 @@ const mapStateToProps = (state: RootState) => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
-  return bindActionCreators(
-    {
-      setCurrentOperationType
-    },
-    dispatch
-  );
+  return bindActionCreators({ setCurrentOperationType }, dispatch);
 };
 type ILeftContainerProps = ReturnType<typeof mapStateToProps> &
   ReturnType<typeof mapDispatchToProps>;
 
 const _LeftContainer: React.FunctionComponent<ILeftContainerProps> = props => {
   return (
-    <Wrapper>
+    <div className={styles.leftContainer}>
       <div>
         当前操作项:
         <br />
@@ -70,14 +50,14 @@ const _LeftContainer: React.FunctionComponent<ILeftContainerProps> = props => {
       </div>
 
       {operationArr.map(item => (
-        <OperationBtn
+        <Button
+          className={styles.leftContainer}
           onClick={() => props.setCurrentOperationType(item)}
-          key={item}
-        >
+          key={item}>
           {item}
-        </OperationBtn>
+        </Button>
       ))}
-    </Wrapper>
+    </div>
   );
 };
 
